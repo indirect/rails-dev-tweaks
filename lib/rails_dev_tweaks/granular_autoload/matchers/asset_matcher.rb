@@ -10,7 +10,7 @@ class RailsDevTweaks::GranularAutoload::Matchers::AssetMatcher
     end
 
     # What do we have?
-    mounted_app.is_a? Sprockets::Base
+    (mounted_app.respond_to?(:app) ? mounted_app.app : mounted_app).is_a?(Sprockets::Base)
   end
 
   def journey_find_app(router, request)
